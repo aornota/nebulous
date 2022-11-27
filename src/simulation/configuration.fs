@@ -36,25 +36,25 @@ type Configuration =
       ExpiresAfter: ExpiresAfter option }
 
 [<Literal>]
-let private MIN_MAX_HEALTH_FOR_NASCENCE = 0.024
+let private MIN_MAX_HEALTH_FOR_NASCENCE = 0.036
 
 [<Literal>]
-let private MAX_MAX_HEALTH_FOR_NASCENCE = 0.096
+let private MAX_MAX_HEALTH_FOR_NASCENCE = 0.108
 
 [<Literal>]
-let private MIN_NASCENCE_RATE_DIVISOR = 40
+let private MIN_NASCENCE_RATE_DIVISOR = 20
 
 [<Literal>]
-let private MAX_NASCENCE_RATE_DIVISOR = 120
+let private MAX_NASCENCE_RATE_DIVISOR = 100
 
 [<Literal>]
-let private MIN_MAX_ALIVE_WEIGHT = 20
+let private MIN_MAX_ALIVE_WEIGHT = 30
 
 [<Literal>]
-let private MAX_MAX_ALIVE_WEIGHT = 60
+let private MAX_MAX_ALIVE_WEIGHT = 70
 
 [<Literal>]
-let private MIN_MAX_NASCENT_WEIGHT = 2
+let private MIN_MAX_NASCENT_WEIGHT = 4
 
 [<Literal>]
 let private MAX_MAX_NASCENT_WEIGHT = 8
@@ -69,7 +69,7 @@ let private MAX_PARTITIONS = 16
 let private MIN_BIAS = -0.09
 
 [<Literal>]
-let private MAX_BIAS = 0.136
+let private MAX_BIAS = 0.135
 
 [<Literal>]
 let private MIN_EXPIRES_AFTER = 100
@@ -176,10 +176,10 @@ let randomConfiguration (width, height) =
 let defaultConfiguration (width, height) =
     let maxHorizontalPartitions, maxVerticalPartitions = maxPartitions (width, height)
 
-    { MaxHealthForNascence = 0.06
-      NascenceRateDivisor = 80
-      MaxAliveWeight = 40
-      MaxNascentWeight = 5
+    { MaxHealthForNascence = 0.072
+      NascenceRateDivisor = 60
+      MaxAliveWeight = 50
+      MaxNascentWeight = 6
       HorizontalPartitions = Math.Min(8, maxHorizontalPartitions)
       VerticalPartitions = Math.Min(5, maxVerticalPartitions)
       RedBias = 0.
@@ -190,11 +190,23 @@ let defaultConfiguration (width, height) =
       ExpiresAfter = None }
 
 let sparseConfiguration (width, height) =
+    let adjustment = 0.4
+
     { defaultConfiguration (width, height) with
-        MaxHealthForNascence = MIN_MAX_HEALTH_FOR_NASCENCE
-        NascenceRateDivisor = MAX_NASCENCE_RATE_DIVISOR }
+        MaxHealthForNascence =
+            MIN_MAX_HEALTH_FOR_NASCENCE
+            + ((MAX_MAX_HEALTH_FOR_NASCENCE - MIN_MAX_HEALTH_FOR_NASCENCE) * adjustment)
+        NascenceRateDivisor =
+            MAX_NASCENCE_RATE_DIVISOR
+            - int (float (MAX_NASCENCE_RATE_DIVISOR - MAX_NASCENCE_RATE_DIVISOR) * adjustment) }
 
 let denseConfiguration (width, height) =
+    let adjustment = 0.2
+
     { defaultConfiguration (width, height) with
-        MaxHealthForNascence = MAX_MAX_HEALTH_FOR_NASCENCE
-        NascenceRateDivisor = MIN_NASCENCE_RATE_DIVISOR }
+        MaxHealthForNascence =
+            MAX_MAX_HEALTH_FOR_NASCENCE
+            - ((MAX_MAX_HEALTH_FOR_NASCENCE - MIN_MAX_HEALTH_FOR_NASCENCE) * adjustment)
+        NascenceRateDivisor =
+            MIN_NASCENCE_RATE_DIVISOR
+            + int (float (MAX_NASCENCE_RATE_DIVISOR - MAX_NASCENCE_RATE_DIVISOR) * adjustment) }
