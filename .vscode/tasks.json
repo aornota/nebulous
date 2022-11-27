@@ -1,0 +1,14 @@
+{
+    "version": "2.0.0",
+    "tasks": [
+        {
+            "type": "msbuild",
+            "problemMatcher": [
+                "$msCompile"
+            ],
+            "group": "build",
+            "label": "Build: nebulous.fsproj",
+            "detail": "Build the nebulous.fsproj project using dotnet build",
+        }
+    ]
+}

@@ -1,0 +1,39 @@
+<Project Sdk="Microsoft.NET.Sdk">
+  <PropertyGroup>
+    <OutputType>WinExe</OutputType>
+    <TargetFramework>net6.0</TargetFramework>
+    <ApplicationIcon>assets\resources\nebulous.ico</ApplicationIcon>
+    <RootNamespace>Aornota.Nebulous</RootNamespace>
+    <TreatWarningsAsErrors>true</TreatWarningsAsErrors>
+  </PropertyGroup>
+  <ItemGroup>
+    <Compile Include="literals\application.fs" />
+    <Compile Include="literals\colours.fs" />
+    <Compile Include="literals\file-extensions.fs" />
+    <Compile Include="literals\folders.fs" />
+    <Compile Include="literals\miscellaneous.fs" />
+    <Compile Include="persistence.fs" />
+    <Compile Include="utilities.fs" />
+    <Compile Include="icons.fs" />
+    <Compile Include="simulation\randomization.fs" />
+    <Compile Include="simulation\configuration.fs" />
+    <Compile Include="simulation\model.fs" />
+    <Compile Include="simulation\transition.fs" />
+    <Compile Include="simulation\view.fs" />
+    <Compile Include="application\model.fs" />
+    <Compile Include="application\preferences.fs" />
+    <Compile Include="application\transition.fs" />
+    <Compile Include="application\view.fs" />
+    <Compile Include="application\subscriptions.fs" />
+    <Compile Include="application\program.fs" />
+    <AvaloniaResource Include="assets\images\**" />
+  </ItemGroup>
+  <ItemGroup>
+    <PackageReference Include="Avalonia.Desktop" Version="0.10.18" />
+    <PackageReference Include="Avalonia.Diagnostics" Version="0.10.18" />
+    <PackageReference Include="JaggerJo.Avalonia.FuncUI" Version="0.5.3" />
+    <PackageReference Include="JaggerJo.Avalonia.FuncUI.DSL" Version="0.5.3" />
+    <PackageReference Include="JaggerJo.Avalonia.FuncUI.Elmish" Version="0.5.3" />
+    <PackageReference Include="Thoth.Json.Net" Version="8.0.0" />
+  </ItemGroup>
+</Project>

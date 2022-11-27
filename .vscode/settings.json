@@ -1,0 +1,11 @@
+{
+    "editor.fontSize": 12,
+    "files.exclude": {
+        ".config/": true,
+        "src/bin/": true,
+        "src/obj/": true,
+        "LICENSE": true
+    },
+    "FSharp.suggestGitignore": false,
+    "FSharp.suggestSdkScripts": false
+}
