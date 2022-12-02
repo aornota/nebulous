@@ -22,6 +22,6 @@ Used (in an adapted form) in [my F# audio player](https://github.com/aornota/fap
     - _dotnet tool restore_
     - _cd src_ then _dotnet restore_
 - Run / build:
-    - Run (debug): _cd src_ then _dotnet run_
-    - Build (debug): _cd src_ then _dotnet build_
-    - Build (release): _cd src_ then _dotnet build -c release_
+    - Run (debug): _dotnet run_
+    - Build (debug): _dotnet build_
+    - Build (release): _dotnet build -c release_
